@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ('id', 'email', 'password', 'full_name', 'is_active', 'is_staff', 'is_superuser', 'date_joined', 'last_login')
+        fields = "__all__"
         extra_kwargs = {
             'password': {'write_only': True},
             'is_active': {'read_only': True},
@@ -24,6 +24,14 @@ class UserSerializer(serializers.ModelSerializer):
         instance.email = validated_data.get('email', instance.email)
         instance.password = validated_data.get('password', instance.password)
         instance.full_name = validated_data.get('full_name', instance.full_name)
+        instance.cep = validated_data.get('cep', instance.cep)
+        instance.address = validated_data.get('address', instance.address)
+        instance.address_number = validated_data.get('address_number', instance.address_number)
+        instance.address_complement = validated_data.get('address_complement', instance.address_complement)
+        instance.neighborhood = validated_data.get('neighborhood', instance.neighborhood)
+        instance.city = validated_data.get('city', instance.city)
+        instance.state = validated_data.get('state', instance.state)
+        instance.country = validated_data.get('country', instance.country)
         instance.is_active = validated_data.get('is_active', instance.is_active)
         instance.is_staff = validated_data.get('is_staff', instance.is_staff)
         instance.is_superuser = validated_data.get('is_superuser', instance.is_superuser)
@@ -57,4 +65,12 @@ class UserSerializer(serializers.ModelSerializer):
         representation['is_superuser'] = instance.is_superuser
         representation['date_joined'] = instance.date_joined
         representation['last_login'] = instance.last_login
+        representation['cep'] = instance.cep
+        representation['address'] = instance.address
+        representation['address_number'] = instance.address_number
+        representation['address_complement'] = instance.address_complement
+        representation['neighborhood'] = instance.neighborhood
+        representation['city'] = instance.city
+        representation['state'] = instance.state
+        representation['country'] = instance.country
         return representation
