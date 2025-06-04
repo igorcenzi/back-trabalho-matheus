@@ -12,6 +12,7 @@ class HallTablesListCreate(generics.ListCreateAPIView):
     """
     queryset = HallTables.objects.all()
     serializer_class = HallTablesSerializer
+    pagination_class = None
     
     def perform_create(self, serializer):
         # When creating a table, initialize seats to 0 (no people seated)
