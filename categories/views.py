@@ -3,8 +3,5 @@ from categories.models import Category
 from categories.serializers import CategorySerializer
 
 class CategoryViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint para gerenciar categorias de produtos.
-    """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer

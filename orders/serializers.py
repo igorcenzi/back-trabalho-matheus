@@ -59,7 +59,6 @@ class OrderCreateSerializer(serializers.ModelSerializer):
         items_data = validated_data.pop('items')
         table = validated_data.get('table')
         
-        # Adiciona a sessão atual da mesa ao pedido
         order = Order.objects.create(
             **validated_data,
             session=table.current_session
